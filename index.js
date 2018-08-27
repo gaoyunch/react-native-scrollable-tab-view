@@ -149,8 +149,8 @@ class ScrollableTabView extends Component {
             useNativeDriver: true,
           })
       }
-      onMomentumScrollBegin={this._onMomentumScrollBeginAndEnd}
-      onMomentumScrollEnd={this._onMomentumScrollBeginAndEnd}
+      onMomentumScrollBegin={this._onMomentumScrollBeginAndEnd.bind(this)}
+      onMomentumScrollEnd={this._onMomentumScrollBeginAndEnd.bind(this)}
       scrollEventThrottle={16}
       scrollsToTop={false}
       showsHorizontalScrollIndicator={false}
