@@ -207,6 +207,7 @@ class ScrollableTabView extends Component {
   }
 
   _onChangeTab(prevPage, currentPage) {
+	if (Number(prevPage) === Number(currentPage)) return;
     this.props.onChangeTab({
       i: currentPage,
       ref: this._children()[currentPage],
