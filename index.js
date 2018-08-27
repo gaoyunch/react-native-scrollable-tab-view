@@ -46,16 +46,16 @@ class ScrollableTabView extends Component {
     super(props);
     const width = Dimensions.get('window').width;
     this.state = {
-      currentPage: this.props.initialPage,
-      scrollX: new Animated.Value(this.props.initialPage * width),
-      scrollValue: new Animated.Value(this.props.initialPage),
+      currentPage: props.initialPage,
+      scrollX: new Animated.Value(props.initialPage * width),
+      scrollValue: new Animated.Value(props.initialPage),
       containerWidth: width,
-      sceneKeys: this.newSceneKeys({ currentPage: this.props.initialPage, }),
+      sceneKeys: this.newSceneKeys({ currentPage: props.initialPage, }),
     };
   }
 
   componentDidMount() {
-    this.setTimeout(() => {
+    setTimeout(() => {
       InteractionManager.runAfterInteractions(() => {
         if (Platform.OS === 'android') {
           this.goToPage(this.props.initialPage, false);
@@ -246,7 +246,7 @@ class ScrollableTabView extends Component {
   render() {
     let overlayTabs = (this.props.tabBarPosition === 'overlayTop' || this.props.tabBarPosition === 'overlayBottom');
     let tabBarProps = {
-      goToPage: this.goToPage,
+      goToPage: this.goToPage.bind(this),
       tabs: this._children().map((child) => child.props.tabLabel),
       activeTab: this.state.currentPage,
       scrollX: this.state.scrollX,
@@ -280,7 +280,7 @@ class ScrollableTabView extends Component {
     const ContainerView = this.props.collapsableBar ? ScrollView : View;
 
     return <ContainerView style={[styles.container, this.props.style,]}
-      onLayout={this._handleLayout}
+      onLayout={this._handleLayout.bind(this)}
       ref={contentView => { this.contentView = contentView; }}
       onMomentumScrollEnd={event => { this.contentScrollDistance = event.nativeEvent.contentOffset.y; }}
       stickyHeaderIndices={this.props.collapsableBar ? [1,] : []}>
