@@ -29,7 +29,9 @@
   },
   "homepage": "https://github.com/gaoyunch/react-native-scrollable-tab-view#readme",
   "dependencies": {
-    "react-timer-mixin": "^0.13.3"
+    "prop-types": "^15.6.2",
+    "react-static-container": "^1.0.2",
+    "react-timer-mixin": "^0.13.4"
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
